@@ -13,7 +13,7 @@ public class InfixToPostfix {
     public InfixToPostfix(){         
     }
     
-    
+    //Método que regresa la expresión en un arreglo de Strings pasandolo a Postfix
     public String[] toPostfix (String[] orig){
         String[] y = new String [orig.length];
         
@@ -22,7 +22,7 @@ public class InfixToPostfix {
         
         int i=0;
         int j=0;
-        int k=0;
+        int k=0; 
         
         while(i<orig.length){
             switch(orig[i]){
@@ -32,29 +32,35 @@ public class InfixToPostfix {
                     signP.push(orig[i]);
                     k++;
                     break;
-                case")": 
+               //Si el caracter que de lee es un )
+               case")": 
                     while(!signP.isEmpty() && !signP.peek().equals("(")){          
                         postFix.push(signP.pop());  
                     }
                     signP.pop();
                     k++; 
                     break;
+                //Si el caracter que de lee es un ^
                 case"^":
                     signP.push(orig[i]);
                     j++;
                     break;
+                //Si el caracter que de lee es un *
                 case"*":
                     resuelveJerarquia(postFix,signP,"*");
                     signP.push(orig[i]);
                     break;
+                //Si el caracter que de lee es un /
                 case"/":
                     resuelveJerarquia(postFix,signP,"/");
                     signP.push(orig[i]);
                     break;
+                //Si el caracter que de lee es un +
                 case"+":
                     resuelveJerarquia(postFix,signP,"+");
                     signP.push(orig[i]);
                     break;
+                //Si el caracter que de lee es un -
                 case"-":
                     resuelveJerarquia(postFix,signP,"-");
                     signP.push(orig[i]);
@@ -63,10 +69,8 @@ public class InfixToPostfix {
                     postFix.push(orig[i]);
                     if(j!=0){
                         postFix.push(signP.pop());
-                        j--;
-                       
-                    }
-                    
+                        j--; 
+                    }  
                     break;
             }
             i++;
@@ -75,12 +79,10 @@ public class InfixToPostfix {
         while(!signP.isEmpty())
             postFix.push(signP.pop());
         
-        
         while(!postFix.isEmpty())
             signP.push(postFix.pop());
         
-        
-  
+
         for(int w = 0; !signP.isEmpty(); w++){
             y[w]=signP.pop(); 
         }
@@ -98,6 +100,7 @@ public class InfixToPostfix {
     return b;
   }
     
+    //Método que resuelve la jerarquia de operadores
     public void resuelveJerarquia(ArrayStack<String> orig,ArrayStack<String> oc,String signo){
             ArrayStack<String> aux=new ArrayStack();
 
