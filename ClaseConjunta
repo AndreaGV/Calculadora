@@ -20,7 +20,7 @@ public class ClaseConjunta {
 
     }
 
-    //Vamos a calcular la expresion, usando todos los metdos anteriores
+    //Vamos a calcular la expresion, usando todas las clases anteriores
     public String calcular() {
         String res;
         SplitTokens spltok;
